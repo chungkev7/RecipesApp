@@ -31,12 +31,14 @@
 			</ul>
 		</div>
 	</nav>
+	<h1>${emptyness }</h1>
 	<table class="table">
 		<tr>
 			<th>Picture</th>
 			<th>Recipe Name</th>
 			<th>Calories</th>
 			<th>Source Link</th>
+			<th>Remove From Favorites</th>
 		</tr>
 		<c:forEach var="r" items="${faves}">
 			<tr>
@@ -44,6 +46,7 @@
 				<td><a href="/details?${r}&label=${r.label}">${r.label}</a></td>
 				<td>${r.calories}</td>
 				<td><a target="_blank" href="${r.url}">Source Link</a></td>
+				<td><a class="btn btn-primary" href="/remove?${r}&label=${r.label}">Remove</a></td>
 			</tr>
 		</c:forEach>
 	</table>

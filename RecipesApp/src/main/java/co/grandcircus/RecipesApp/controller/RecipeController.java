@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.grandcircus.RecipesApp.entity.Recipe;
 import co.grandcircus.RecipesApp.entity.RecipeDetails;
 import co.grandcircus.RecipesApp.entity.RecipeResult;
 
@@ -77,12 +76,31 @@ public class RecipeController {
 	
 	@RequestMapping("/favorites")
 	public ModelAndView displayFavourites() {
+		if (getThoseFlavourites().isEmpty()) {
+			return new ModelAndView("favorites", "emptiness", "You haven't added any favorites yet");
+		}
 		return new ModelAndView("favorites", "faves", getThoseFlavourites());
 	}
 	
 	public static ArrayList<RecipeDetails> getThoseFlavourites() {
 		return favorites;
 	}
+	
+//	public static ArrayList<RecipeDetails> removeFav(RecipeDetails r){
+////		favorites.remove(favorites.indexOf(r));
+//		return favorites;
+//	}
+	
+	@RequestMapping("/remove")
+	public ModelAndView removeFromFavorites(RecipeDetails r) {
+		ModelAndView mv = new ModelAndView("redirect:/favorites");
+		favorites.remove(favorites.get(favorites.indexOf(r)));
+//		System.out.println(favorites);
+		mv.addObject("faves", getThoseFlavourites());
+		
+		return mv;
+	}
+	
 //	@RequestMapping("/show-cal")
 //	public ModelAndView showCal(@RequestParam("filter") String option) {
 //		ModelAndView mv = new ModelAndView("index");
