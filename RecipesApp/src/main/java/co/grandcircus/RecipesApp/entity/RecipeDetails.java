@@ -1,7 +1,5 @@
 package co.grandcircus.RecipesApp.entity;
 
-import java.util.ArrayList;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -9,6 +7,7 @@ public class RecipeDetails {
 
 	private String label;
 	private String url;
+	private String image;
 	private double calories;
 	private Integer yield;
 //	ArrayList<DietLabel> dietLabels;
@@ -17,10 +16,11 @@ public class RecipeDetails {
 		super();
 	}
 
-	public RecipeDetails(String label, String url, double calories, Integer yield) {
+	public RecipeDetails(String label, String url, String image, double calories, Integer yield) {
 		super();
 		this.label = label;
 		this.url = url;
+		this.image = image;
 		this.calories = calories;
 		this.yield = yield;
 	}
@@ -67,7 +67,7 @@ public class RecipeDetails {
 
 	@Override
 	public String toString() {
-		return "RecipeDetails [label=" + label + ", url=" + url + ", calories=" + calories + "]";
+		return "label=" + label + "&url=" + url + "&image=" + image + "&calories=" + calories + "&yield=" + yield;
 	}
 
 	public Integer getYield() {
@@ -76,6 +76,14 @@ public class RecipeDetails {
 
 	public void setYield(Integer yield) {
 		this.yield = yield;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

@@ -36,7 +36,7 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [recipe=" + recipe + ", bookmarked=" + bookmarked + "]";
+		return "recipe=" + recipe + "&bookmarked=" + bookmarked;
 	}
 
 }
