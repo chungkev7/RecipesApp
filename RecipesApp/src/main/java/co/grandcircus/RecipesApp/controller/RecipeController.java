@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.grandcircus.RecipesApp.entity.RecipeResult;
+
 @Controller
 public class RecipeController {
 
@@ -28,7 +30,8 @@ public class RecipeController {
 
 		String url = "https://api.edamam.com/search?q=chicken&app_id=" + appId + "&app_key=" + recipeKey;
 
-		String test = rt.getForObject(url, String.class);
+//		String test = rt.getForObject(url, String.class);
+		RecipeResult test = rt.getForObject(url, RecipeResult.class);
 
 		System.out.println(test);
 
