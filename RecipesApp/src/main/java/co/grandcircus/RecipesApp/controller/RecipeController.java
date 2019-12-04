@@ -3,6 +3,7 @@ package co.grandcircus.RecipesApp.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,4 +38,15 @@ public class RecipeController {
 
 		return new ModelAndView("redirect:/");
 	}
+	
+	@RequestMapping("/show-cal")
+	public ModelAndView showCal(@RequestParam("filter") String option) {
+		ModelAndView mv = new ModelAndView("index");
+		if (option.equalsIgnoreCase("calories")) {
+			mv.addObject("calories", "<span>Between<input type='number'> and <input type='number'>calories</span>");
+		}
+		System.out.println(option);
+		return mv;
+	}
+	
 }

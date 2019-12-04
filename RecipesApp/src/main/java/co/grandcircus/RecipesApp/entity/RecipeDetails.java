@@ -10,17 +10,19 @@ public class RecipeDetails {
 	private String label;
 	private String url;
 	private double calories;
+	private Integer yield;
 //	ArrayList<DietLabel> dietLabels;
 
 	public RecipeDetails() {
 		super();
 	}
 
-	public RecipeDetails(String label, String url, double calories) {
+	public RecipeDetails(String label, String url, double calories, Integer yield) {
 		super();
 		this.label = label;
 		this.url = url;
 		this.calories = calories;
+		this.yield = yield;
 	}
 
 //	public RecipeDetails(String label, String url, double calories, ArrayList<DietLabel> dietLabels) {
@@ -66,6 +68,14 @@ public class RecipeDetails {
 	@Override
 	public String toString() {
 		return "RecipeDetails [label=" + label + ", url=" + url + ", calories=" + calories + "]";
+	}
+
+	public Integer getYield() {
+		return yield;
+	}
+
+	public void setYield(Integer yield) {
+		this.yield = yield;
 	}
 
 }
