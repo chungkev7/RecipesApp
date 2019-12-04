@@ -15,22 +15,30 @@
 <body>
 	<div class="container">
 		<div class="jumbotron">
-			<form action="/show-cal">
-				Text: <input type="text" name="q" value="chicken" required>
-				<!-- 		 <div class="form-group">
- -->
-					<select class="custom-select" id="test" name="filter">
-						<option selected="">Filter by:</option>
-						<option value="calories" name="calories" id="calories">Calories</option>
-						<option value="diet">Diet Type</option>
-					</select>
-					<button type="button" class="btn btn-primary">Apply
-						Filter</button>
-					<span id="filter"></span>
-					${calories}
-				<!-- 		</div>
- -->
-				<input type="submit" value="Submit">
+			<form action="/search?">
+				Text: <input type="text" name="q" value="" required> <br>
+				<input type='number' name="cal1"> and <input type='number' name="cal2">calories
+				<select class="custom-select" id="test" name="diet">
+					<option selected="">Select option</option>
+					<option value="balanced">Balanced</option>
+					<option value="high-protein">High Protein</option>
+					<option value="high-fiber">High Fiber</option>
+					<option value="low-fat">Low Fat</option>
+					<option value="low-carb">Low Carb</option>
+					<option value="low-sodium">Low Sodium</option>
+				</select>
+				${calories}
+			<!-- <form action="/show-cal"> -->
+				<!-- <br> Filter by:<select class="custom-select" id="test"
+					name="filter">
+					<option selected="">Select option</option>
+					<option value="calories" id="calories">Calories</option>
+					<option value="diet">Diet Type</option>
+				</select>
+				<input type="button" class="btn btn-primary" value="Apply Filter">
+				<span id="filter"></span>  -->
+			<!-- </form> -->
+				<input type="submit" value="Submit"> <br>
 			</form>
 		</div>
 	</div>

@@ -27,16 +27,24 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/search")
-	public ModelAndView searchRecipe() {
-
-		String url = "https://api.edamam.com/search?q=chicken&app_id=" + appId + "&app_key=" + recipeKey;
+	public ModelAndView searchRecipe(@RequestParam("q") String q, @RequestParam("cal1") Integer cal1, 
+			@RequestParam("cal2") Integer cal2, @RequestParam("diet") String diet) {
+		ModelAndView mv = new ModelAndView("display");
+		String url = "https://api.edamam.com/search?q="+ q +"&app_id=" + appId + "&app_key=" + recipeKey;
+		if (cal1 != null && cal2 != null) {
+			url.concat("&calories=" + cal1 + "-" + cal2);
+		} 
+		if (diet != null) {
+			url.concat("&diet=" + diet);
+		}
 
 //		String test = rt.getForObject(url, String.class);
 		RecipeResult test = rt.getForObject(url, RecipeResult.class);
 
 		System.out.println(test);
+		mv.addObject("test", test.getHits().get(0));
 
-		return new ModelAndView("redirect:/");
+		return mv;
 	}
 	
 	@RequestMapping("/show-cal")
