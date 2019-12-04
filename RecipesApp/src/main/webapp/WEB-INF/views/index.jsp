@@ -17,8 +17,9 @@
 		<div class="jumbotron">
 			<form action="/search?">
 				Text: <input type="text" name="q" value="" required> <br>
-				<input type='number' name="cal1"> and <input type='number' name="cal2">calories
-				<select class="custom-select" id="test" name="diet">
+				<input type='number' name="cal1"> and <input type='number'
+					name="cal2">calories <select class="custom-select"
+					id="test" name="diet">
 					<option selected="">Select option</option>
 					<option value="balanced">Balanced</option>
 					<option value="high-protein">High Protein</option>
@@ -26,9 +27,8 @@
 					<option value="low-fat">Low Fat</option>
 					<option value="low-carb">Low Carb</option>
 					<option value="low-sodium">Low Sodium</option>
-				</select>
-				${calories}
-			<!-- <form action="/show-cal"> -->
+				</select> ${calories}
+				<!-- <form action="/show-cal"> -->
 				<!-- <br> Filter by:<select class="custom-select" id="test"
 					name="filter">
 					<option selected="">Select option</option>
@@ -37,7 +37,7 @@
 				</select>
 				<input type="button" class="btn btn-primary" value="Apply Filter">
 				<span id="filter"></span>  -->
-			<!-- </form> -->
+				<!-- </form> -->
 				<input type="submit" value="Submit"> <br>
 			</form>
 		</div>
@@ -46,8 +46,8 @@
 		function showMe() {
 			var option = document.getElementById("test").value;
 			/* if (option === "calories") {
-			}  */ 
-				document.getElementById('filter').innerHTML = "<span>Between<input type="number"> and <input type="number">calories</span>"
+			}  */
+			document.getElementById('filter').innerHTML = "<span>Between<input type="number"> and <input type="number">calories</span>"
 			console.log(filter);
 			console.log(option);
 		}

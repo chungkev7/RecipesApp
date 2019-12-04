@@ -55,7 +55,11 @@ public class RecipeController {
 	@RequestMapping("/details")
 	public ModelAndView showDetails(RecipeDetails r) {
 		ModelAndView mv = new ModelAndView("details");
-		mv.addObject("details", r);
+		mv.addObject("image", r.getImage());
+		mv.addObject("label", r.getLabel());
+		mv.addObject("calories", r.getCalories());
+		mv.addObject("yield", r.getYield());
+		mv.addObject("time", r.getTotalTime());
 		return mv;
 	}
 	
