@@ -25,7 +25,7 @@ public class RecipeController {
 	RestTemplate rt = new RestTemplate();
 
 	static RecipeResult test;
-	static ArrayList<Recipe> favorites;
+	static ArrayList<RecipeDetails> favorites = new ArrayList<>();
 	
 	@RequestMapping("/")
 	public ModelAndView homePage() {
@@ -64,15 +64,24 @@ public class RecipeController {
 	}
 	
 	@RequestMapping("/add-recipe")
-	public ModelAndView addToFavorites(Recipe r) {
+	public ModelAndView addToFavorites(RecipeDetails r) {
 		
 		ModelAndView mv = new ModelAndView("display");
-//		favorites.add(r);
+		favorites.add(r);
 		
 		mv.addObject("test", test.getHits());
-//		System.out.println(favorites);
-//		System.out.println(r);
+		System.out.println(favorites);
+
 		return mv;
+	}
+	
+	@RequestMapping("/favorites")
+	public ModelAndView displayFavourites() {
+		return new ModelAndView("favorites", "faves", getThoseFlavourites());
+	}
+	
+	public static ArrayList<RecipeDetails> getThoseFlavourites() {
+		return favorites;
 	}
 //	@RequestMapping("/show-cal")
 //	public ModelAndView showCal(@RequestParam("filter") String option) {
