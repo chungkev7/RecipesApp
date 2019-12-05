@@ -1,5 +1,7 @@
 package co.grandcircus.RecipesApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -65,12 +67,12 @@ public class RecipeController {
 
 	@RequestMapping("/add-recipe")
 	public ModelAndView addToFavorites(RecipeDetails r) {
-
 		ModelAndView mv = new ModelAndView("display");
-		rp.save(r);
-
+		List<RecipeDetails> faves = rp.findAll();
+		if (!faves.contains(rp.findByLabel(r.getLabel()))) {
+			rp.save(r);
+		} 
 		mv.addObject("test", test.getHits());
-
 		return mv;
 	}
 
