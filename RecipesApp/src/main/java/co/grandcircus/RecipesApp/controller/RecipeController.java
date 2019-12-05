@@ -1,5 +1,6 @@
 package co.grandcircus.RecipesApp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,12 @@ public class RecipeController {
 
 	@RequestMapping("/favorites")
 	public ModelAndView displayFavourites() {
-		return new ModelAndView("favorites", "faves", rp.findAll());
+		List<RecipeDetails> faves = rp.findAll();
+		if (faves.isEmpty()) {
+			return new ModelAndView("favorites", "emptiness", "You currently have no saved favorites");
+		} else {
+			return new ModelAndView("favorites", "faves", rp.findAll());
+		}
 
 	}
 

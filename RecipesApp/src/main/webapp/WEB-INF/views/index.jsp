@@ -33,11 +33,13 @@
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
+		<h1>Search for a Recipe!</h1>
 			<form action="/search?">
 				Text: <input type="text" name="q" value="" required> <br>
-				<input type='number' name="cal1"> and <input type='number'
-					name="cal2">calories <select class="custom-select"
-					id="test" name="diet">
+				Between <input type='number' name="cal1"> and <input type='number'
+					name="cal2">calories <br>
+				Diet Type: <select class="custom-select"
+					id="diet" name="diet" style="width:200px;">
 					<option selected="">Select option</option>
 					<option value="balanced">Balanced</option>
 					<option value="high-protein">High Protein</option>
@@ -45,7 +47,8 @@
 					<option value="low-fat">Low Fat</option>
 					<option value="low-carb">Low Carb</option>
 					<option value="low-sodium">Low Sodium</option>
-				</select> <input type="submit" value="Submit"> <br>
+				</select> 
+				<br><br><input type="submit" value="Submit"><br>
 			</form>
 		</div>
 	</div>
