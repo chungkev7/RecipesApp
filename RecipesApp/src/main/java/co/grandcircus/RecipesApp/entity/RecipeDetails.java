@@ -1,11 +1,28 @@
 package co.grandcircus.RecipesApp.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeDetails {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	private String label;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	private String url;
 	private String image;
 	private double calories;
@@ -28,6 +45,18 @@ public class RecipeDetails {
 		this.totalTime = totalTime;
 	}
 
+
+	public RecipeDetails(Integer id, String label, String url, String image, double calories, Integer yield, Integer totalTime) {
+		super();
+		this.id = id;
+		this.label = label;
+		this.url = url;
+		this.image = image;
+		this.calories = calories;
+		this.yield = yield;
+		this.totalTime = totalTime;
+	}
+	
 //	public RecipeDetails(String label, String url, double calories, ArrayList<DietLabel> dietLabels) {
 //		super();
 //		this.label = label;

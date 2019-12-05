@@ -1,7 +1,6 @@
 package co.grandcircus.RecipesApp.controller;
 
-import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.grandcircus.RecipesApp.entity.Recipe;
 import co.grandcircus.RecipesApp.entity.RecipeDetails;
 import co.grandcircus.RecipesApp.entity.RecipeResult;
+import co.grandcircus.RecipesApp.repo.RecipeRepo;
 
 @Controller
 public class RecipeController {
@@ -24,9 +23,11 @@ public class RecipeController {
 
 	RestTemplate rt = new RestTemplate();
 
+	@Autowired
+	RecipeRepo rp;
+
 	static RecipeResult test;
-	static ArrayList<RecipeDetails> favorites = new ArrayList<>();
-	
+
 	@RequestMapping("/")
 	public ModelAndView homePage() {
 
@@ -34,24 +35,23 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/search")
-	public ModelAndView searchRecipe(@RequestParam("q") String q, @RequestParam("cal1") Integer cal1, 
+	public ModelAndView searchRecipe(@RequestParam("q") String q, @RequestParam("cal1") Integer cal1,
 			@RequestParam("cal2") Integer cal2, @RequestParam("diet") String diet) {
 		ModelAndView mv = new ModelAndView("display");
-		String url = "https://api.edamam.com/search?q="+ q +"&app_id=" + appId + "&app_key=" + recipeKey;
+		String url = "https://api.edamam.com/search?q=" + q + "&app_id=" + appId + "&app_key=" + recipeKey;
 		if (cal1 != null && cal2 != null) {
 			url.concat("&calories=" + cal1 + "-" + cal2);
-		} 
+		}
 		if (diet != null) {
 			url.concat("&diet=" + diet);
 		}
 
-//		RecipeResult test = rt.getForObject(url, RecipeResult.class);
 		test = rt.getForObject(url, RecipeResult.class);
 
 		mv.addObject("test", test.getHits());
 		return mv;
 	}
-	
+
 	@RequestMapping("/details")
 	public ModelAndView showDetails(RecipeDetails r) {
 		ModelAndView mv = new ModelAndView("details");
@@ -62,35 +62,30 @@ public class RecipeController {
 		mv.addObject("time", r.getTotalTime());
 		return mv;
 	}
-	
+
 	@RequestMapping("/add-recipe")
 	public ModelAndView addToFavorites(RecipeDetails r) {
-		
+
 		ModelAndView mv = new ModelAndView("display");
-		favorites.add(r);
-		
+		rp.save(r);
+
 		mv.addObject("test", test.getHits());
-		System.out.println(favorites);
 
 		return mv;
 	}
-	
+
 	@RequestMapping("/favorites")
 	public ModelAndView displayFavourites() {
-		return new ModelAndView("favorites", "faves", getThoseFlavourites());
+		return new ModelAndView("favorites", "faves", rp.findAll());
 	}
-	
-	public static ArrayList<RecipeDetails> getThoseFlavourites() {
-		return favorites;
+
+	@RequestMapping("/remove")
+	public ModelAndView removeFromFavorites(Integer id) {
+		ModelAndView mv = new ModelAndView("redirect:/favorites");
+		rp.delete(rp.findById(id).orElse(null));
+		mv.addObject("faves", rp.findAll());
+
+		return mv;
 	}
-//	@RequestMapping("/show-cal")
-//	public ModelAndView showCal(@RequestParam("filter") String option) {
-//		ModelAndView mv = new ModelAndView("index");
-//		if (option.equalsIgnoreCase("calories")) {
-//			mv.addObject("calories", "<span>Between<input type='number'> and <input type='number'>calories</span>");
-//		}
-//		System.out.println(option);
-//		return mv;
-//	}
-	
+
 }

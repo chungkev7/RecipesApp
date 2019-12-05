@@ -35,7 +35,7 @@
 		<div class="jumbotron">
 			<img src="${image }">
 			<p>${label }</p>
-			<p>${calories }calories</p>
+			<p>${calories } calories</p>
 			<p>yield: ${yield } serving(s)</p>
 			<p>Total time: ${time } min</p>
 		</div>

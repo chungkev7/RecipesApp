@@ -45,30 +45,9 @@
 					<option value="low-fat">Low Fat</option>
 					<option value="low-carb">Low Carb</option>
 					<option value="low-sodium">Low Sodium</option>
-				</select> ${calories}
-				<!-- <form action="/show-cal"> -->
-				<!-- <br> Filter by:<select class="custom-select" id="test"
-					name="filter">
-					<option selected="">Select option</option>
-					<option value="calories" id="calories">Calories</option>
-					<option value="diet">Diet Type</option>
-				</select>
-				<input type="button" class="btn btn-primary" value="Apply Filter">
-				<span id="filter"></span>  -->
-				<!-- </form> -->
-				<input type="submit" value="Submit"> <br>
+				</select> <input type="submit" value="Submit"> <br>
 			</form>
 		</div>
 	</div>
-	<script>
-		function showMe() {
-			var option = document.getElementById("test").value;
-			/* if (option === "calories") {
-			}  */
-			document.getElementById('filter').innerHTML = "<span>Between<input type="number"> and <input type="number">calories</span>"
-			console.log(filter);
-			console.log(option);
-		}
-	</script>
 </body>
 </html>
