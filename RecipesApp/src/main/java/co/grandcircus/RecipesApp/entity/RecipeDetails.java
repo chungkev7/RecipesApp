@@ -64,7 +64,7 @@ public class RecipeDetails {
 //		this.calories = calories;
 //		this.dietLabels = dietLabels;
 //	}
-
+ 
 	public String getLabel() {
 		return label;
 	}

@@ -77,6 +77,7 @@ public class RecipeController {
 	@RequestMapping("/favorites")
 	public ModelAndView displayFavourites() {
 		return new ModelAndView("favorites", "faves", rp.findAll());
+
 	}
 
 	@RequestMapping("/remove")
